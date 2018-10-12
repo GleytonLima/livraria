@@ -1,0 +1,7 @@
+.idea/
+livraria.iml
+target/
+.classpath
+.project
+.settings/
+bin/
