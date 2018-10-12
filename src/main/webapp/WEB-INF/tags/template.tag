@@ -15,7 +15,7 @@
 
 <div>
     <ul>
-        <li><a href="/admin/livros">Livros</a></li>
+        <li><a href="/home">Home</a></li>
         <li><a href="/admin/autores">Autores</a></li>
     </ul>
 </div>

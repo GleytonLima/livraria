@@ -7,37 +7,34 @@
 
 <livraria:template>
 	<jsp:body>
-		<h1>Autores</h1>
+		<h1>Livros do Autor: ${autor.nome}</h1>
 		<table>
 			<thead>
 				<tr>
-					<th>Nome</th>
-					<th>Email</th>
+					<th>Titulo</th>
 					<th colspan="2">Ações</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="autor" items="${autores}">
+				<c:forEach var="livro" items="${livros}">
 					<tr>
-						<td>${autor.nome}</td>
-						<td>${autor.email}</td>
+						<td>${livro.titulo}</td>
 						<td>
-							<a href="#" onclick="excluir(${autor.id})">Excluir</a>
-							<a href="/admin/livros-do-autor?autorId=${autor.id}">Ver Livros</a>
+							<a href="#" onclick="excluir(${livro.id})">Excluir</a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<div>
-			<a href="/admin/autor">Novo</a>
+			<a href="/admin/livro-novo-para-um-autor?autorId=${autor.id}">Novo Livro</a>
 		</div>
 		<script>
 			function excluir(id) {
 				var url = window.location.href;
 				if(confirm("Confirma Exclusão? " + id)){
                     $.ajax({
-                        url:"/admin/autor/" + id,
+                        url:"/admin/livro/" + id,
                         type: 'DELETE',
                         success: function (result) {
                             console.log(result);

@@ -7,7 +7,7 @@
 <livraria:template>
     <jsp:body>
         <c:set var="bindingResult" value="${requestScope['org.springframework.validation.BindingResult.autor']}"/>
-
+        <h1>Cadastrar Novo Autor</h1>
         <form action='/admin/autor' method="post">
             <input type="hidden" name="id" value="${autor.id}">
 
