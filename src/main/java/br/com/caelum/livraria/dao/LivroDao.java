@@ -24,7 +24,7 @@ public class LivroDao {
     }
 
     public List<Livro> findAll() {
-        return manager.createQuery("select l from Livro l", Livro.class).getResultList();
+        return manager.createQuery("select l from Livro l ORDER BY l.titulo ASC", Livro.class).getResultList();
     }
 
     public List<Livro> findTresMaisRecentes() {
@@ -34,7 +34,7 @@ public class LivroDao {
     }
 
     public List<Livro> findAllByAutor(Integer autorId) {
-        TypedQuery<Livro> query = manager.createQuery("select l from Livro l WHERE l.autor.id = :autorId", Livro.class);
+        TypedQuery<Livro> query = manager.createQuery("select l from Livro l WHERE l.autor.id = :autorId ORDER BY l.titulo ASC", Livro.class);
         query.setParameter("autorId", autorId);
         return query.getResultList();
     }

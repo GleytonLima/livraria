@@ -3,6 +3,7 @@ package br.com.caelum.livraria.model.form;
 import br.com.caelum.livraria.dao.AutorDao;
 import br.com.caelum.livraria.model.Autor;
 import br.com.caelum.livraria.model.Livro;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -22,12 +23,14 @@ public class LivroForm {
     }
 
     @NotNull
+    @NotEmpty
     private String titulo;
 
     @NotNull
+    @NotEmpty
     private String sumario;
 
-
+    @NotNull
     private BigDecimal preco;
 
     @NotNull

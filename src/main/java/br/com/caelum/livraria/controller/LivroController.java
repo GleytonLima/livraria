@@ -28,7 +28,7 @@ public class LivroController {
 
 
     @GetMapping("/admin/livros-do-autor")
-    public ModelAndView form(@RequestParam("autorId") Integer autorId, LivroForm livroForm) {
+    public ModelAndView form(@RequestParam("autorId") Integer autorId) {
 
         ModelAndView modelAndView = new ModelAndView("livro/livros-por-autor");
 
@@ -36,18 +36,18 @@ public class LivroController {
         Autor autor = autorDao.findOne(autorId);
         modelAndView.addObject("livros", livros);
         modelAndView.addObject("autor", autor);
-        modelAndView.addObject("form", livroForm);
 
         return modelAndView;
 
     }
 
     @GetMapping("/admin/livro-novo-para-um-autor")
-    public ModelAndView form(@RequestParam("autorId") Integer autorId) {
+    public ModelAndView form(@RequestParam("autorId") Integer autorId, LivroForm livroForm) {
 
         ModelAndView modelAndView = new ModelAndView("livro/livro-novo-para-um-autor");
         Autor autor = autorDao.findOne(autorId);
         modelAndView.addObject("autor", autor);
+        modelAndView.addObject("form", livroForm);
         return modelAndView;
 
     }
@@ -78,6 +78,9 @@ public class LivroController {
         LivroValidacao livroValidacao = new LivroValidacao();
 
         if(livroValidacao.verificaSeJaExiste(livro, livrosDoAutor)) {
+
+            //TODO: Para fins de teste, apenas fazer um System.out.println simulando o envio de email para o autor
+            System.out.println("Enviado e-mail para "+livro.getAutor().getEmail()+ " com data de publicacao prevista "+ livro.getDataEstimadaPublicacao());
             livroDao.save(livro);
 
             ModelAndView modelAndView = new ModelAndView("redirect:/admin/livros-do-autor?autorId="+livroForm.getAutorId());
